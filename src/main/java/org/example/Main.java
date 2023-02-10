@@ -13,6 +13,10 @@ import org.apache.beam.sdk.values.PCollection;
 import org.apache.beam.sdk.values.PCollectionList;
 import org.apache.beam.sdk.values.TypeDescriptors;
 
+/**
+ * mvn compile exec:java -Dexec.mainClass=org.example.Main     -Dexec.args="--pro
+ * ject=pso-bv-sandbox --tempLocation=gs://cdi-sandbox-dataflow/temp/dataflow" -Pdirect-runner
+ */
 public class Main {
     public static void main(String[] args) {
 
@@ -23,15 +27,15 @@ public class Main {
 
         PCollection<TableRow> tableA = pipeline.apply("Read from BigQuery table A",
                 BigQueryIO.readTableRows().withoutValidation().fromQuery(
-                        "SELECT * FROM `bigquery-public-data.austin_bikeshare.bikeshare_stations` LIMIT 10;"));
+                        "SELECT * FROM bigquery-public-data:austin_bikeshare.bikeshare_stations LIMIT 10"));
 
         PCollection<TableRow> tableB = pipeline.apply("Read from BigQuery table B",
                 BigQueryIO.readTableRows().withoutValidation().fromQuery(
-                        "SELECT * FROM `bigquery-public-data.san_francisco.bikeshare_stations` LIMIT 10;"));
+                        "SELECT * FROM bigquery-public-data:san_francisco.bikeshare_stations LIMIT 10"));
 
         PCollection<TableRow> tableC = pipeline.apply("Read from BigQuery table C",
                 BigQueryIO.readTableRows().withoutValidation().fromQuery(
-                        "SELECT * FROM `bigquery-public-data.new_york_citibike.citibike_stations` LIMIT 10;"));
+                        "SELECT * FROM bigquery-public-data:new_york_citibike.citibike_stations LIMIT 10"));
 
         // Flatten takes a PCollectionList of PCollection objects of a given type.
         // Returns a single PCollection that contains all of the elements in the PCollection objects in that list.
