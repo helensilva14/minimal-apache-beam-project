@@ -15,7 +15,7 @@ import org.apache.beam.sdk.values.TypeDescriptors;
 
 /**
  * mvn compile exec:java -Dexec.mainClass=org.example.Main     -Dexec.args="--pro
- * ject=pso-bv-sandbox --tempLocation=gs://cdi-sandbox-dataflow/temp/dataflow" -Pdirect-runner
+ * ject=PROJECT_NAME --tempLocation=gs://BUCKET_NAME/temp/dataflow" -Pdirect-runner
  */
 public class Main {
     public static void main(String[] args) {
